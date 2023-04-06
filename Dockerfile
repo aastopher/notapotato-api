@@ -19,8 +19,11 @@ COPY . .
 # Switch to non-root user
 USER appuser
 
+# Expose port for application
+EXPOSE 8000
+
 # Start the application server using Gunicorn
-CMD exec gunicorn --bind :$PORT --workers 1 --threads 8 --timeout 0 app:app
+CMD ["gunicorn", "--bind", "0.0.0.0:8000", "-k", "uvicorn.workers.UvicornWorker", "app:app"]
 
 
 
