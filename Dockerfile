@@ -20,7 +20,7 @@ COPY . .
 USER appuser
 
 # Expose port for application
-EXPOSE 8000
+EXPOSE $PORT
 
 # Start the application server using Gunicorn
 CMD ["gunicorn", "--bind", "0.0.0.0:8000", "-k", "uvicorn.workers.UvicornWorker", "app:app"]
